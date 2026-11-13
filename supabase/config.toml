@@ -1,0 +1,13 @@
+project_id = "wsjqinjdailusnvrgace"
+
+[functions.state]
+verify_jwt = false
+
+[functions.login]
+verify_jwt = false
+
+[functions.booking]
+verify_jwt = false
+
+[functions.cancel]
+verify_jwt = false
