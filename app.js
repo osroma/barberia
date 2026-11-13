@@ -322,6 +322,7 @@ function statusLabel(status) {
 }
 
 function render() {
+  if (!currentStaff) return;
   const visibleAppointments = currentStaff?.role === "barber"
     ? appointments.filter(item => item.barber === currentStaff.barber)
     : appointments;
