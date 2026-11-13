@@ -1,0 +1,7 @@
+.admin-password.json
+.env
+.env.*
+.env.supabase
+.wrangler/
+data.json
+node_modules/

@@ -1,0 +1,6 @@
+name = "adrian-barber"
+pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "BARBERIA_STATE"
+id = "0efbb955a4704da6ac0869b5643c85db"

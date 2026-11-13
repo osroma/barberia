@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17181c">
+  <title>Adrian Barber | Reservas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="landing" id="landingPage">
+    <nav class="landing-nav">
+      <div class="landing-logo"><img src="assets/adrian-barber-logo.jpg" alt="Adrian Barber"><div><strong>ADRIAN BARBER</strong><small>BARRANQUILLA</small></div></div>
+      <div class="landing-nav-actions">
+        <button class="landing-admin landing-share" id="shareBookingLink" type="button">Compartir reservas</button>
+        <button class="landing-admin" id="showStaffLogin">Acceso del equipo</button>
+      </div>
+    </nav>
+    <div class="landing-hero">
+      <div class="landing-copy">
+        <p class="landing-kicker">ESTILO • PRECISIÓN • CARÁCTER</p>
+        <h1>Domina tu <em>estilo.</em></h1>
+        <p class="landing-lead">Cortes con personalidad, técnica profesional y la fuerza de Adrian Barber.</p>
+        <div class="landing-actions">
+          <button class="landing-primary" id="landingBookButton">Reservar mi cita</button>
+          <a class="landing-secondary" href="#landingServices">Ver servicios</a>
+        </div>
+        <div class="landing-rating"><strong>4.9</strong><span>★★★★★</span><small>183 agendamientos</small></div>
+      </div>
+      <div class="hero-figure">
+        <section class="slider" id="heroSlider" aria-roledescription="carousel" aria-label="Estilos realizados en Adrian Barber"></section>
+      </div>
+    </div>
+    <div class="landing-services" id="landingServices">
+      <div><p class="landing-kicker">SERVICIOS</p><h2>Elige tu estilo</h2></div>
+      <div class="landing-service-grid">
+        <article><span>01</span><h3>Corte</h3><p>30 minutos</p><strong>$20.000</strong></article>
+        <article><span>02</span><h3>Corte con Barba</h3><p>30 minutos</p><strong>$25.000</strong></article>
+        <article><span>03</span><h3>Barba</h3><p>5 minutos</p><strong>$5.000</strong></article>
+        <article><span>04</span><h3>Diseños</h3><p>Desde 5 minutos</p><strong>Desde $3.000</strong></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="auth-screen" id="authScreen" hidden>
+    <div class="auth-card">
+      <div class="brand auth-brand">
+        <img class="brand-mark" src="assets/adrian-barber-logo.jpg" alt="Adrian Barber">
+        <div><strong>ADRIAN BARBER</strong><span>RESERVAS</span></div>
+      </div>
+      <p class="eyebrow">BIENVENIDO</p>
+      <h1>¿Cómo quieres ingresar?</h1>
+      <div class="role-selector">
+        <button class="role-card" data-role="client">
+          <span>♙</span><strong>Soy cliente</strong><small>Reservar una cita</small>
+        </button>
+        <button class="role-card" data-role="barber">
+          <span>✂</span><strong>Soy barbero</strong><small>Ver mi agenda</small>
+        </button>
+        <button class="role-card" data-role="admin">
+          <span>▦</span><strong>Administrador</strong><small>Gestionar la barbería</small>
+        </button>
+      </div>
+      <form class="login-form" id="staffLoginForm" hidden>
+        <label>Usuario<input name="username" required autocomplete="username"></label>
+        <label>Contraseña<input name="password" type="password" required autocomplete="current-password"></label>
+        <p class="login-hint" id="loginHint"></p>
+        <button class="primary-button" type="submit">Ingresar</button>
+        <button class="text-button back-button" type="button" id="backRoles">Volver</button>
+      </form>
+      <button class="text-button back-button staff-home-button" id="staffHomeButton">← Volver al inicio</button>
+    </div>
+  </section>
+
+  <section class="public-booking" id="publicBooking" hidden>
+    <div class="public-brand">ADRIAN BARBER <span>RESERVAS</span></div>
+    <div class="booking-card">
+      <button class="text-button booking-back" id="clientBack">← Volver</button>
+      <p class="eyebrow">RESERVA ONLINE</p>
+      <h1>Agenda tu cita</h1>
+      <form id="publicBookingForm">
+        <div class="form-grid">
+          <label>Nombre completo<input name="client" required></label>
+          <label>WhatsApp<input name="phone" required type="tel" placeholder="57 300 123 4567"></label>
+          <fieldset class="service-picker" data-service-picker>
+            <legend>Servicios <small>Selecciona uno o varios</small></legend>
+          </fieldset>
+          <label>Barbero<select name="barber" required></select></label>
+          <label>Fecha<input name="date" required type="date"></label>
+          <label>Hora<select name="time" required><option value="">Selecciona una hora</option></select></label>
+        </div>
+        <div class="availability-note" data-availability-note>Selecciona barbero, fecha y servicios para ver disponibilidad.</div>
+        <div class="service-total"><span>Total estimado</span><strong data-service-total>$0</strong></div>
+        <button class="primary-button booking-submit" type="submit">Confirmar cita</button>
+      </form>
+      <div class="booking-success" id="bookingSuccess" hidden>
+        <div class="success-icon">✓</div>
+        <h2>¡Cita agendada!</h2>
+        <p>Tu reserva quedó registrada. Por favor, llega <strong>15 minutos antes</strong> de la hora reservada. Te enviaremos el recordatorio por WhatsApp.</p>
+        <button class="primary-button" type="button" id="newPublicBooking">Agendar otra cita</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="appShell" hidden>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img class="brand-mark" src="assets/adrian-barber-logo.jpg" alt="Adrian Barber">
+      <div><strong>ADRIAN BARBER</strong><span>ADMIN</span></div>
+    </div>
+    <nav>
+      <button class="nav-item active" data-view="dashboard"><span>▦</span> Panel</button>
+      <button class="nav-item" data-view="appointments"><span>▣</span> Citas</button>
+      <button class="nav-item" data-view="calendar"><span>▦</span> Calendario</button>
+      <button class="nav-item admin-only" data-view="clients"><span>♙</span> Clientes</button>
+      <button class="nav-item admin-only" data-view="barbers"><span>✂</span> Barberos</button>
+      <button class="nav-item admin-only" data-view="services"><span>$</span> Servicios</button>
+      <button class="nav-item admin-only" data-view="schedule"><span>◷</span> Horarios</button>
+    </nav>
+    <button class="add-client-button admin-only" id="newAppointmentSide">＋ Nueva cita</button>
+    <button class="logout-button" id="logoutButton">Cerrar sesión</button>
+  </aside>
+
+  <main>
+    <header>
+      <button class="menu-button" id="menuButton" aria-label="Abrir menú">☰</button>
+      <div>
+        <p class="eyebrow">SISTEMA DE GESTIÓN</p>
+        <h1 id="pageTitle">Panel principal</h1>
+      </div>
+      <button class="primary-button" id="newAppointment"><span>＋</span> Nueva cita</button>
+    </header>
+
+    <section class="view active" id="dashboardView">
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-icon gold">▣</div><div><span>Citas hoy</span><strong id="todayCount">0</strong></div></article>
+        <article class="stat-card"><div class="stat-icon blue">◷</div><div><span>Pendientes</span><strong id="pendingCount">0</strong></div></article>
+        <article class="stat-card"><div class="stat-icon green">✓</div><div><span>Completadas</span><strong id="completedCount">0</strong></div></article>
+        <article class="stat-card"><div class="stat-icon orange">$</div><div><span>Ingresos del día</span><strong id="todayRevenue">$0</strong></div></article>
+      </div>
+
+      <div class="content-grid">
+        <section class="panel appointments-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">AGENDA</p><h2>Próximas citas</h2></div>
+            <button class="text-button" data-view-link="appointments">Ver todas →</button>
+          </div>
+          <div id="upcomingList" class="appointment-list"></div>
+        </section>
+
+        <section class="panel reminder-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">WhatsApp</p><h2>Recordatorios</h2></div>
+          </div>
+          <div id="reminderList" class="reminder-list"></div>
+        </section>
+      </div>
+      <section class="panel daily-revenue-panel admin-only">
+        <div class="panel-heading">
+          <div><p class="eyebrow">INGRESOS</p><h2>Ganancias por día</h2></div>
+          <label class="daily-revenue-picker">Fecha<input id="dailyRevenueDate" type="date"></label>
+        </div>
+        <div class="daily-revenue-summary">
+          <div><span>Total del día</span><strong id="dailyRevenueTotal">$0</strong></div>
+          <div><span>Servicios completados</span><strong id="dailyRevenueCount">0</strong></div>
+        </div>
+        <div class="daily-revenue-list" id="dailyRevenueList"></div>
+      </section>
+    </section>
+
+    <section class="view" id="appointmentsView">
+      <section class="panel full-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">AGENDA COMPLETA</p><h2>Gestión de citas</h2></div>
+          <input id="appointmentSearch" class="search-input" type="search" placeholder="Buscar cliente...">
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Cliente</th><th>Servicio</th><th>Barbero</th><th>Fecha</th><th>Hora</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <tbody id="appointmentsTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+      <section class="view" id="calendarView">
+        <div class="calendar-layout">
+          <section class="panel calendar-panel">
+            <div class="panel-heading calendar-heading">
+              <button class="calendar-arrow" id="previousMonth" aria-label="Mes anterior">‹</button>
+              <div class="calendar-selectors">
+                <label>
+                  Mes
+                  <select id="calendarMonthSelect" aria-label="Seleccionar mes"></select>
+                </label>
+                <label>
+                  Año
+                  <select id="calendarYearSelect" aria-label="Seleccionar año"></select>
+                </label>
+              </div>
+              <button class="calendar-arrow" id="nextMonth" aria-label="Mes siguiente">›</button>
+              <h2 id="calendarMonth" hidden></h2>
+            </div>
+            <div class="calendar-weekdays"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span></div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+          </section>
+          <section class="panel calendar-agenda">
+            <div class="panel-heading">
+              <div><p class="eyebrow">HORARIOS DEL DÍA</p><h2 id="selectedDayTitle">Selecciona un día</h2></div>
+            </div>
+            <div class="blocked-hours-admin admin-only" id="blockedHoursAdmin">
+              <strong>Bloquear horario</strong>
+              <div>
+                <select id="blockedBarber" aria-label="Barbero"></select>
+                <label class="blocked-field">
+                  Fecha
+                  <input id="blockedDate" type="date" aria-label="Fecha">
+                </label>
+                <select id="blockedTime" aria-label="Hora">
+                  <option value="">Selecciona hora</option>
+                </select>
+                <button type="button" class="primary-button" id="blockHourButton">Bloquear</button>
+              </div>
+              <div id="blockedHoursList"></div>
+            </div>
+            <div id="calendarDayAppointments"></div>
+          </section>
+        </div>
+      </section>
+
+    <section class="view" id="clientsView">
+      <section class="panel full-panel">
+        <div class="panel-heading"><div><p class="eyebrow">DIRECTORIO</p><h2>Clientes</h2></div></div>
+        <div class="client-grid" id="clientGrid"></div>
+      </section>
+    </section>
+
+    <section class="view" id="barbersView">
+      <section class="panel full-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">EQUIPO</p><h2>Administrar barberos</h2></div>
+          <button class="primary-button" id="addBarberButton">＋ Agregar barbero</button>
+        </div>
+        <div class="barber-grid" id="barberGrid"></div>
+      </section>
+      <section class="panel full-panel admin-security-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">SEGURIDAD</p><h2>Cambiar contraseña del administrador</h2></div>
+        </div>
+        <form id="adminPasswordForm" class="form-grid">
+          <label>Contraseña actual<input name="currentPassword" type="password" required minlength="6"></label>
+          <label>Nueva contraseña<input name="newPassword" type="password" required minlength="10"></label>
+          <label>Confirmar contraseña<input name="confirmPassword" type="password" required minlength="10"></label>
+          <button class="primary-button" type="submit">Guardar contraseña</button>
+        </form>
+      </section>
+    </section>
+
+    <section class="view" id="servicesView">
+      <section class="panel full-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">CATÁLOGO</p><h2>Administrar servicios</h2></div>
+        </div>
+        <div class="service-admin-grid" id="serviceGrid"></div>
+      </section>
+    </section>
+
+    <section class="view" id="scheduleView">
+      <section class="panel full-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">ATENCIÓN</p><h2>Horarios de apertura</h2></div>
+          <button class="primary-button" id="saveScheduleButton" type="button">Guardar horarios</button>
+        </div>
+        <div class="schedule-grid" id="scheduleGrid"></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="barberDialog">
+    <form id="barberForm">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">EQUIPO</p><h2 id="barberDialogTitle">Agregar barbero</h2></div>
+        <button class="close-button" type="button" data-close-barber>×</button>
+      </div>
+      <div class="form-grid">
+        <label>Nombre<input name="name" required></label>
+        <label>Usuario<input name="username" required></label>
+        <label>Contraseña<input name="password" minlength="6"></label>
+        <label>Teléfono<input name="phone" type="tel"></label>
+      </div>
+      <div class="dialog-actions">
+        <button class="secondary-button" type="button" data-close-barber>Cancelar</button>
+        <button class="primary-button" type="submit">Guardar barbero</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="appointmentDialog">
+    <form id="appointmentForm" method="dialog">
+      <div class="dialog-heading">
+        <div><p class="eyebrow">NUEVA RESERVA</p><h2>Agendar cita</h2></div>
+        <button class="close-button" type="button" data-close-dialog>×</button>
+      </div>
+      <div class="form-grid">
+        <label>Nombre del cliente<input name="client" required placeholder="Ej. Carlos Pérez"></label>
+        <label>Teléfono de WhatsApp<input name="phone" required type="tel" placeholder="57 300 123 4567"></label>
+        <fieldset class="service-picker" data-service-picker>
+          <legend>Servicios <small>Selecciona uno o varios</small></legend>
+        </fieldset>
+        <label>Barbero<select name="barber" required></select></label>
+        <label>Fecha<input name="date" required type="date"></label>
+        <label>Hora<select name="time" required><option value="">Selecciona una hora</option></select></label>
+      </div>
+      <div class="availability-note" data-availability-note>Selecciona barbero, fecha y servicios para ver disponibilidad.</div>
+      <div class="service-total"><span>Total estimado</span><strong data-service-total>$0</strong></div>
+      <label>Notas<textarea name="notes" rows="3" placeholder="Preferencias o observaciones"></textarea></label>
+      <div class="dialog-actions">
+        <button type="button" class="secondary-button" data-close-dialog>Cancelar</button>
+        <button type="submit" class="primary-button">Guardar cita</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast"></div>
+  </div>
+  <script src="supabase-config.js"></script>
+  <script src="app.js?v=20261107-performance"></script>
+</body>
+</html>
