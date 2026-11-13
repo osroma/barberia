@@ -25,6 +25,14 @@ Aplicación de reservas y administración. La configuración de producción usa 
 
    `BARBERIA_ANON_KEY` debe coincidir con `supabaseAnonKey` en `supabase-config.js`. `SUPABASE_URL` y la clave pública/anon se obtienen del proyecto Supabase. La clave pública/anon puede estar en el frontend; `service_role` y `BARBERIA_JWT_SECRET` no.
 
+   Si quieres enviar la confirmación automática por WhatsApp al crear una cita, agrega también estas variables a `.env.supabase` y publícalas con `supabase secrets set`:
+
+   ```text
+   WHATSAPP_TOKEN=tu_token_api_meta
+   WHATSAPP_PHONE_NUMBER_ID=tu_phone_number_id
+   WHATSAPP_API_VERSION=v22.0
+   ```
+
 4. Publica las funciones:
 
    ```powershell

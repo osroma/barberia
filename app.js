@@ -417,7 +417,7 @@ function renderTable() {
     ? appointments.filter(item => item.barber === currentStaff.barber)
     : appointments;
   const rows = baseAppointments
-    .filter(item => item.client.toLowerCase().includes(query))
+    .filter(item => String(item.client || "").toLowerCase().includes(query))
     .sort((a, b) => appointmentDateTime(a) - appointmentDateTime(b));
   document.getElementById("appointmentsTable").innerHTML = rows.length ? rows.map(item => `
     <tr>
@@ -435,8 +435,9 @@ function renderClients() {
   const clients = [...new Map(appointments.map(item => [item.phone, item])).values()];
   document.getElementById("clientGrid").innerHTML = clients.map(item => {
     const visits = appointments.filter(a => a.phone === item.phone && a.status === "completed").length;
-    return `<article class="client-card"><div class="avatar">${escapeHtml(item.client.charAt(0).toUpperCase())}</div>
-      <strong>${escapeHtml(item.client)}</strong><span>${escapeHtml(item.phone)}</span><br><span>${visits} visita${visits === 1 ? "" : "s"} completada${visits === 1 ? "" : "s"}</span></article>`;
+    const client = String(item.client || "");
+    return `<article class="client-card"><div class="avatar">${escapeHtml(client.charAt(0).toUpperCase())}</div>
+      <strong>${escapeHtml(client)}</strong><span>${escapeHtml(item.phone || "")}</span><br><span>${visits} visita${visits === 1 ? "" : "s"} completada${visits === 1 ? "" : "s"}</span></article>`;
   }).join("");
 }
 
